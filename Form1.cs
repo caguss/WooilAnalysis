@@ -684,7 +684,7 @@ namespace WooilAnalysis
                     SqlDataReader rdr = cmd.ExecuteReader();
                     DTdt = GetTable_T(rdr);
                         dgv_main_DT.DataSource = DTdt;
-                    dgv_main_DT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                    dgv_main_DT.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 }
 
                 trycnt = 0;

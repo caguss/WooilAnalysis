@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpSensorData = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -61,6 +64,7 @@
             this.btnSearch_T = new System.Windows.Forms.Button();
             this.lblStatus_T = new System.Windows.Forms.Label();
             this.btn_Excel_T = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
@@ -93,6 +97,17 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.dtp_date_DT = new System.Windows.Forms.DateTimePicker();
+            this.btn_Search_DT = new System.Windows.Forms.Button();
+            this.lblStatus_DT = new System.Windows.Forms.Label();
+            this.btn_Excel_DT = new System.Windows.Forms.Button();
+            this.cb_code_DT = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.dgv_main_DT = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tpSensorData.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -107,15 +122,21 @@
             this.tpDcpmWS.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_main_DT)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tpSensorData);
             this.tabControl1.Controls.Add(this.tpDcpmWS);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.ItemSize = new System.Drawing.Size(65, 25);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -146,6 +167,7 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(900, 100);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -428,14 +450,15 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1470, 922);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
@@ -544,24 +567,40 @@
             this.btn_Excel_T.UseVisualStyleBackColor = true;
             this.btn_Excel_T.Click += new System.EventHandler(this.btn_Excel_T_Click);
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.tableLayoutPanel6);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1470, 892);
+            this.panel1.TabIndex = 3;
+            // 
             // tableLayoutPanel6
             // 
+            this.tableLayoutPanel6.AutoSize = true;
+            this.tableLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel6.ColumnCount = 2;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel8, 0, 0);
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel8, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel7, 0, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 30);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(1470, 892);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(1470, 891);
             this.tableLayoutPanel6.TabIndex = 2;
             // 
             // tableLayoutPanel8
             // 
+            this.tableLayoutPanel8.AutoSize = true;
+            this.tableLayoutPanel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel8.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -581,6 +620,7 @@
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(808, 0);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel8.MaximumSize = new System.Drawing.Size(662, 892);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 16;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
@@ -599,7 +639,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(662, 892);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(662, 891);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
             // label10
@@ -786,6 +826,8 @@
             // 
             // tableLayoutPanel7
             // 
+            this.tableLayoutPanel7.AutoSize = true;
+            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel7.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.tableLayoutPanel7.ColumnCount = 2;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -809,6 +851,7 @@
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel7.MaximumSize = new System.Drawing.Size(808, 892);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 16;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
@@ -827,7 +870,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(808, 892);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(808, 891);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // lblCurrentTrainerWater
@@ -1057,6 +1100,183 @@
             this.label20.Text = "사용량";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tableLayoutPanel9);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(1476, 928);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "일자별 사용량";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.dgv_main_DT, 0, 1);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(1476, 928);
+            this.tableLayoutPanel9.TabIndex = 3;
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 8;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel10.Controls.Add(this.label27, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.dtp_date_DT, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btn_Search_DT, 7, 0);
+            this.tableLayoutPanel10.Controls.Add(this.lblStatus_DT, 6, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btn_Excel_DT, 5, 0);
+            this.tableLayoutPanel10.Controls.Add(this.cb_code_DT, 3, 0);
+            this.tableLayoutPanel10.Controls.Add(this.label29, 2, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(1476, 40);
+            this.tableLayoutPanel10.TabIndex = 1;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label27.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
+            this.label27.Location = new System.Drawing.Point(0, 0);
+            this.label27.Margin = new System.Windows.Forms.Padding(0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(100, 40);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "조회 조건";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dtp_date_DT
+            // 
+            this.dtp_date_DT.CalendarFont = new System.Drawing.Font("굴림", 14F);
+            this.dtp_date_DT.CustomFormat = "yyyy-MM-dd";
+            this.dtp_date_DT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtp_date_DT.Font = new System.Drawing.Font("맑은 고딕", 16F);
+            this.dtp_date_DT.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtp_date_DT.Location = new System.Drawing.Point(100, 1);
+            this.dtp_date_DT.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.dtp_date_DT.Name = "dtp_date_DT";
+            this.dtp_date_DT.Size = new System.Drawing.Size(150, 36);
+            this.dtp_date_DT.TabIndex = 1;
+            // 
+            // btn_Search_DT
+            // 
+            this.btn_Search_DT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Search_DT.Font = new System.Drawing.Font("맑은 고딕", 12F);
+            this.btn_Search_DT.Location = new System.Drawing.Point(1379, 3);
+            this.btn_Search_DT.Name = "btn_Search_DT";
+            this.btn_Search_DT.Size = new System.Drawing.Size(94, 34);
+            this.btn_Search_DT.TabIndex = 4;
+            this.btn_Search_DT.Text = "조회";
+            this.btn_Search_DT.UseVisualStyleBackColor = true;
+            this.btn_Search_DT.Click += new System.EventHandler(this.btn_Search_DT_Click);
+            // 
+            // lblStatus_DT
+            // 
+            this.lblStatus_DT.AutoSize = true;
+            this.lblStatus_DT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStatus_DT.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
+            this.lblStatus_DT.Location = new System.Drawing.Point(1276, 0);
+            this.lblStatus_DT.Margin = new System.Windows.Forms.Padding(0);
+            this.lblStatus_DT.Name = "lblStatus_DT";
+            this.lblStatus_DT.Size = new System.Drawing.Size(100, 40);
+            this.lblStatus_DT.TabIndex = 5;
+            this.lblStatus_DT.Text = "Ready";
+            this.lblStatus_DT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btn_Excel_DT
+            // 
+            this.btn_Excel_DT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Excel_DT.Font = new System.Drawing.Font("맑은 고딕", 12F);
+            this.btn_Excel_DT.Location = new System.Drawing.Point(1179, 3);
+            this.btn_Excel_DT.Name = "btn_Excel_DT";
+            this.btn_Excel_DT.Size = new System.Drawing.Size(94, 34);
+            this.btn_Excel_DT.TabIndex = 6;
+            this.btn_Excel_DT.Text = "Excel";
+            this.btn_Excel_DT.UseVisualStyleBackColor = true;
+            this.btn_Excel_DT.Click += new System.EventHandler(this.btn_Excel_DT_Click);
+            // 
+            // cb_code_DT
+            // 
+            this.cb_code_DT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cb_code_DT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_code_DT.Font = new System.Drawing.Font("맑은 고딕", 16F);
+            this.cb_code_DT.FormattingEnabled = true;
+            this.cb_code_DT.Items.AddRange(new object[] {
+            "직거",
+            "래피드",
+            "정련기"});
+            this.cb_code_DT.Location = new System.Drawing.Point(350, 1);
+            this.cb_code_DT.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.cb_code_DT.Name = "cb_code_DT";
+            this.cb_code_DT.Size = new System.Drawing.Size(150, 38);
+            this.cb_code_DT.TabIndex = 7;
+            // 
+            // label29
+            // 
+            this.label29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label29.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
+            this.label29.Location = new System.Drawing.Point(253, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(94, 40);
+            this.label29.TabIndex = 8;
+            this.label29.Text = "설비 선택";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgv_main_DT
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("맑은 고딕", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_main_DT.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_main_DT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_main_DT.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_main_DT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_main_DT.Location = new System.Drawing.Point(3, 43);
+            this.dgv_main_DT.Name = "dgv_main_DT";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("맑은 고딕", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_main_DT.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgv_main_DT.RowTemplate.Height = 23;
+            this.dgv_main_DT.Size = new System.Drawing.Size(1470, 882);
+            this.dgv_main_DT.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1064,7 +1284,7 @@
             this.ClientSize = new System.Drawing.Size(1484, 961);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1000, 100);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "WooilAnalysis";
@@ -1085,11 +1305,19 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_main_DT)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1161,6 +1389,18 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btn_Excel_T;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.DateTimePicker dtp_date_DT;
+        private System.Windows.Forms.Button btn_Search_DT;
+        private System.Windows.Forms.Label lblStatus_DT;
+        private System.Windows.Forms.Button btn_Excel_DT;
+        private System.Windows.Forms.ComboBox cb_code_DT;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.DataGridView dgv_main_DT;
     }
 }
 

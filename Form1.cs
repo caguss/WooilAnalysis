@@ -23,6 +23,7 @@ namespace WooilAnalysis
         System.Data.DataTable dt;
         System.Data.DataTable SWdt;
         System.Data.DataTable Tdt;
+        System.Data.DataTable DTdt;
         bool _isDrawing = false;
         public Form1()
         {
@@ -33,7 +34,7 @@ namespace WooilAnalysis
             dtpStart_T.Value = DateTime.Today.AddDays(-1).AddHours(7);
             dtpEnd_T.Value = DateTime.Today.AddHours(06).AddMinutes(59).AddSeconds(59);
             ChartSetting();
-
+            cb_code_DT.SelectedIndex = 0;
         }
         #region Button Method
         /// <summary>
@@ -555,8 +556,6 @@ namespace WooilAnalysis
                     cmd.Parameters.Add(startdate);
                     cmd.Parameters.Add(enddate);
 
-
-
                     // 데이타는 서버에서 가져오도록 실행
                     SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -570,7 +569,6 @@ namespace WooilAnalysis
                 decimal jiggerwater;
                 decimal rapidwater;
                 decimal trainerwater;
-
 
                 System.Data.DataTable dt1;
                 for (int i = 0; i < Tdt.Rows.Count; i++)
@@ -639,7 +637,82 @@ namespace WooilAnalysis
 
             }
         }
+        private void Search_DT()
+        {
+            SqlConnection conn = new SqlConnection("Server=db2.coever.co.kr,1897; Database=CoFAS_WOOIL; uid=wooriuser; pwd=wooriuser1!");
 
+            try
+            {
+
+                CSafeSetBool(btnSearch_T, false);
+                CSafeSetBool(btn_Excel_T, false);
+                using (conn)
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_SearchResult_DT", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 30;
+
+                    // Input param
+                    SqlParameter date = new SqlParameter("@v_Date", SqlDbType.VarChar, 8);
+                    SqlParameter code = new SqlParameter("@v_Code", SqlDbType.VarChar, 14);
+                    date.Value = dtp_date_DT.Value.ToString("yyyyMMdd");
+
+                    string cb_code_vl = "";
+                    cb_code_DT.Invoke((MethodInvoker)delegate ()
+                    {
+                        cb_code_vl = cb_code_DT.Text;
+                    });
+
+                    switch (cb_code_vl)
+                    {
+                        case "직거":
+                            code.Value = "cd_001";
+                            break;
+                        case "래피드":
+                            code.Value = "cd_002";
+                            break;
+                        case "정련기":
+                            code.Value = "cd_003";
+                            break;
+                    }
+
+                    cmd.Parameters.Add(date);
+                    cmd.Parameters.Add(code);
+
+                    // 데이타는 서버에서 가져오도록 실행
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    DTdt = GetTable_T(rdr);
+                        dgv_main_DT.DataSource = DTdt;
+                    dgv_main_DT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                }
+
+                trycnt = 0;
+                lblStatus_DT.Text = "Finish!";
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                trycnt++;
+                if (trycnt < 5)
+                {
+                lblStatus_DT.Text = "Retrying...";
+                    Search_DT();
+                }
+                else
+                {
+                    MessageBox.Show(ex.ToString());
+                lblStatus_DT.Text = "Error!";
+                }
+
+            }
+            finally
+            {
+                CSafeSetBool(btn_Excel_T, true);
+                CSafeSetBool(btnSearch_T, true);
+
+            }
+        }
         private void Search_SW()
         {
             SqlConnection conn = new SqlConnection("Server=db2.coever.co.kr,1897; Database=CoFAS_WOOIL; uid=wooriuser; pwd=wooriuser1!");
@@ -908,6 +981,49 @@ namespace WooilAnalysis
         }
 
         #endregion
+
+        private void btn_Search_DT_Click(object sender, EventArgs e)
+        {
+            lblStatus_DT.Text = "Loading...";
+            Search_DT();
+        }
+
+        private void btn_Excel_DT_Click(object sender, EventArgs e)
+        {
+            if (DTdt == null)
+            {
+                MessageBox.Show("검색을 먼저 실행해 주세요.");
+                return;
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "경로 설정";
+            saveFileDialog.DefaultExt = "xlsx";
+            saveFileDialog.Filter = "xlsx 파일|*.xlsx|xls 파일|*.xls";
+
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                lblStatus_DT.Text = "Loading...";
+                dt = DTdt;
+                CSafeSetBool(btn_Excel_DT, false);
+                CSafeSetBool(btn_Search_DT, false);
+                try
+                {
+                    My_DataTable_Extensions.ExportToExcel(dt, saveFileDialog.FileName);
+                    MessageBox.Show("저장이 완료되었습니다.");
+                    lblStatus_DT.Text = "Finish!";
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    lblStatus_DT.Text = "Error!";
+                }
+            }
+
+
+
+        }
     }
 
     public static class My_DataTable_Extensions
@@ -952,6 +1068,7 @@ namespace WooilAnalysis
 
             Worksheet.get_Range((Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[2, 1]), (Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[RowsCount + 1, ColumnsCount])).Value = Cells;
 
+            Worksheet.Columns.AutoFit();
             // check fielpath
             if (ExcelFilePath != null && ExcelFilePath != "")
             {

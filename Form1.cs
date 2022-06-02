@@ -563,12 +563,12 @@ namespace WooilAnalysis
                     Tdt = GetTable_T(rdr);
                 }
 
-                decimal jiggersteam;
-                decimal rapidsteam;
-                decimal trainersteam;
-                decimal jiggerwater;
-                decimal rapidwater;
-                decimal trainerwater;
+                decimal jiggersteam =0;
+                decimal rapidsteam = 0;
+                decimal trainersteam = 0;
+                decimal jiggerwater = 0;
+                decimal rapidwater = 0;
+                decimal trainerwater = 0;
 
                 System.Data.DataTable dt1;
                 for (int i = 0; i < Tdt.Rows.Count; i++)
@@ -578,34 +578,83 @@ namespace WooilAnalysis
                     {
                         case "직가":
                             dt1 = Tdt.AsEnumerable().Where(Row => Row.Field<string>("place_cd") == "cd_001").OrderBy(Row => Row.Field<string>("ndate")).CopyToDataTable();
+                            if (dt1.Rows.Count != 2)
+                            {
+                                try
+                                {
+                                    var data1 = dt1.Rows[1]["steam"].ToString();
+                                }
+                                catch (Exception)
+                                {
+                                    jiggersteam =Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                    jiggerwater =Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
 
-                            jiggersteam = Convert.ToDecimal(dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
-                            jiggerwater = Convert.ToDecimal(dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                                    CSafeSetString(lblCurrentJiggerSteam, dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                    CSafeSetString(lblCurrentJiggerWater, dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                                }
+                            }
+                            else
+                            {
+                                jiggersteam = Convert.ToDecimal(dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                jiggerwater = Convert.ToDecimal(dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                                CSafeSetString(lblCurrentJiggerSteam, dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString());
+                                CSafeSetString(lblCurrentJiggerWater, dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString());
+                            }
                             CSafeSetString(lblJiggerSteam, jiggersteam.ToString());
                             CSafeSetString(lblJiggerWater, jiggerwater.ToString());
-                            CSafeSetString(lblCurrentJiggerSteam, dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString());
-                            CSafeSetString(lblCurrentJiggerWater, dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString());
                             break;
                         case "래피드":
                             dt1 = Tdt.AsEnumerable().Where(Row => Row.Field<string>("place_cd") == "cd_003").OrderBy(Row => Row.Field<string>("ndate")).CopyToDataTable();
-
-                            rapidsteam = Convert.ToDecimal(dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
-                            rapidwater = Convert.ToDecimal(dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                            if (dt1.Rows.Count != 2)
+                            {
+                                try
+                                {
+                                    var data1 = dt1.Rows[1]["steam"].ToString();
+                                }
+                                catch (Exception)
+                                {
+                                    rapidsteam = Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                    rapidwater = Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                                    CSafeSetString(lblCurrentRapidSteam, dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                    CSafeSetString(lblCurrentRapidWater, dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                                }
+                            }
+                            else
+                            {
+                                rapidsteam = Convert.ToDecimal(dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                rapidwater = Convert.ToDecimal(dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                                CSafeSetString(lblCurrentRapidSteam, dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString());
+                                CSafeSetString(lblCurrentRapidWater, dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString());
+                            }
                             CSafeSetString(lblRapidSteam, rapidsteam.ToString());
                             CSafeSetString(lblRapidWater, rapidwater.ToString());
-                            CSafeSetString(lblCurrentRapidSteam, dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString());
-                            CSafeSetString(lblCurrentRapidWater, dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString());
                             break;
                         case "정련기":
-
                             dt1 = Tdt.AsEnumerable().Where(Row => Row.Field<string>("place_cd") == "cd_002").OrderBy(Row => Row.Field<string>("ndate")).CopyToDataTable();
-
-                            trainersteam = Convert.ToDecimal(dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
-                            trainerwater = Convert.ToDecimal(dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                            if (dt1.Rows.Count != 2)
+                            {
+                                try
+                                {
+                                    var data1 = dt1.Rows[1]["steam"].ToString();
+                                }
+                                catch (Exception)
+                                {
+                                    trainersteam = Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                    trainerwater = Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                                    CSafeSetString(lblCurrentTrainerSteam, dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                    CSafeSetString(lblCurrentTrainerWater, dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                                }
+                            }
+                            else
+                            {
+                                trainersteam = Convert.ToDecimal(dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["steam"].ToString() == " " ? "0" : dt1.Rows[0]["steam"].ToString());
+                                trainerwater = Convert.ToDecimal(dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString()) - Convert.ToDecimal(dt1.Rows[0]["water"].ToString() == " " ? "0" : dt1.Rows[0]["water"].ToString());
+                     
+                                CSafeSetString(lblCurrentTrainerSteam, dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString());
+                                CSafeSetString(lblCurrentTrainerWater, dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString());
+                            }
                             CSafeSetString(lblTrainerSteam, trainersteam.ToString());
                             CSafeSetString(lblTrainerWater, trainerwater.ToString());
-                            CSafeSetString(lblCurrentTrainerSteam, dt1.Rows[1]["steam"].ToString() == " " ? "0" : dt1.Rows[1]["steam"].ToString());
-                            CSafeSetString(lblCurrentTrainerWater, dt1.Rows[1]["water"].ToString() == " " ? "0" : dt1.Rows[1]["water"].ToString());
                             break;
                     }
 
@@ -666,6 +715,9 @@ namespace WooilAnalysis
 
                     switch (cb_code_vl)
                     {
+                        case "전체":
+                            code.Value = "";
+                            break;
                         case "직거":
                             code.Value = "cd_001";
                             break;
@@ -683,8 +735,21 @@ namespace WooilAnalysis
                     // 데이타는 서버에서 가져오도록 실행
                     SqlDataReader rdr = cmd.ExecuteReader();
                     DTdt = GetTable_T(rdr);
+                    if (DTdt.Rows.Count > 0)
+                    {
                         dgv_main_DT.DataSource = DTdt;
-                    dgv_main_DT.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                        dgv_main_DT.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;//설비
+                        dgv_main_DT.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells; //시간대별
+                        dgv_main_DT.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;//수량사용량
+                                                                                                                     //dgv_main_DT.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;//수량누적
+                        dgv_main_DT.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;//스팀량
+                                                                                                                     //dgv_main_DT.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;//스팀누적
+                        foreach (DataGridViewColumn column in dgv_main_DT.Columns)
+                        {
+                            column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        }
+                    }
+                  
                 }
 
                 trycnt = 0;
@@ -696,13 +761,13 @@ namespace WooilAnalysis
                 trycnt++;
                 if (trycnt < 5)
                 {
-                lblStatus_DT.Text = "Retrying...";
+                    lblStatus_DT.Text = "Retrying...";
                     Search_DT();
                 }
                 else
                 {
                     MessageBox.Show(ex.ToString());
-                lblStatus_DT.Text = "Error!";
+                    lblStatus_DT.Text = "Error!";
                 }
 
             }
@@ -712,6 +777,29 @@ namespace WooilAnalysis
                 CSafeSetBool(btnSearch_T, true);
 
             }
+        }
+
+        bool IsTheSameCellValue(int column, int row)
+        {
+            try
+            {
+                //if (row == -1)
+                //{
+                //    return false;
+                //}
+                DataGridViewCell cell1 = dgv_main_DT[column, row];
+                DataGridViewCell cell2 = dgv_main_DT[column + 1, row];
+                if (cell1.Value == null || cell2.Value == null)
+                    return false;
+
+                return cell1.Value.ToString() == cell2.Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
         }
         private void Search_SW()
         {
@@ -746,11 +834,15 @@ namespace WooilAnalysis
                     SqlDataReader rdr = cmd.ExecuteReader();
                     SWdt = new System.Data.DataTable();
                     SWdt = GetTable_SW(rdr);
-                    SWdt = SWdt.AsEnumerable().OrderBy(Row => Row.Field<string>("생산시간")).OrderBy(Row => Row.Field<string>("생산일자")).CopyToDataTable();
-                    dgvRow.Invoke(new System.Action(delegate ()
+                    if (SWdt.Rows.Count > 0)
                     {
-                        dgvRow.DataSource = SWdt;
-                    }));
+                        SWdt = SWdt.AsEnumerable().OrderBy(Row => Row.Field<string>("생산시간")).OrderBy(Row => Row.Field<string>("생산일자")).CopyToDataTable();
+                        dgvRow.Invoke(new System.Action(delegate ()
+                        {
+                            dgvRow.DataSource = SWdt;
+                        }));
+                    }
+               
 
 
                 }
@@ -986,6 +1078,7 @@ namespace WooilAnalysis
         {
             lblStatus_DT.Text = "Loading...";
             Search_DT();
+            //dgv_main_DT[0, dgv_main_DT.Rows.Count-1].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void btn_Excel_DT_Click(object sender, EventArgs e)
@@ -1023,6 +1116,44 @@ namespace WooilAnalysis
 
 
 
+        }
+
+        private void dgv_main_DT_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+
+            //if (e.RowIndex < 1 || e.ColumnIndex < 0)
+            //    return;
+            if (e.RowIndex == dgv_main_DT.RowCount - 1 && e.ColumnIndex == 0)
+            {
+                if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
+                {
+                    e.AdvancedBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
+                }
+                else
+                {
+                    e.AdvancedBorderStyle.Right = dgv_main_DT.AdvancedCellBorderStyle.Right;
+                }
+            }
+            else
+            {
+                e.AdvancedBorderStyle.Right = dgv_main_DT.AdvancedCellBorderStyle.Right;
+            }
+
+
+
+        }
+        private void dgv_main_DT_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex == 0)
+                return;
+            if (e.RowIndex == dgv_main_DT.RowCount - 1 && e.ColumnIndex == 0)
+            {
+                if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
+                {
+                    e.Value = "";
+                    e.FormattingApplied = true;
+                }
+            }
         }
     }
 
